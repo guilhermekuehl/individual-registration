@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface PersonRepository extends JpaRepository<PersonEntity, String> {
-    Optional<PersonEntity> findByCPF(String CPF);
+    Optional<PersonEntity> findByCpf(String cpf);
 }

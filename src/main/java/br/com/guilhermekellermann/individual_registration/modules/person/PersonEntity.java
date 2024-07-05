@@ -17,10 +17,10 @@ public class PersonEntity {
 
     @Length(min = 11, max = 11, message = "CPF inválido")
     @Id
-    private String CPF;
+    private String cpf;
     private String address;
     private String complement;
-    private String CEP;
+    private String cep;
     private String district;
     private String cityName;
     private String state;

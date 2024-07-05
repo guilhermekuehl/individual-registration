@@ -15,7 +15,7 @@ public class CreatePersonUseCase {
 
     public PersonEntity execute(PersonEntity personEntity) {
         this.personRepository
-        .findByCPF(personEntity.getCPF())
+        .findByCpf(personEntity.getCpf())
         .ifPresent((person) -> {
             throw new PersonFoundException();
         });
