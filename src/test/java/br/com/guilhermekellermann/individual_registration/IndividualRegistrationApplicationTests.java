@@ -10,7 +10,7 @@ class IndividualRegistrationApplicationTests {
 
 	@Test
 	void should_return_true_when_person_was_registered() {
-
+		
 	}
 
 	@Test
