@@ -27,7 +27,4 @@ public class PersonEntity {
     private String district;
     private String cityName;
     private String state;
-
-    @CreationTimestamp
-    private LocalDateTime createdAt;
 }
