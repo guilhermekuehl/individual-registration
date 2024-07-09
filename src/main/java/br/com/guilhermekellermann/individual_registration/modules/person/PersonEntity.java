@@ -1,5 +1,8 @@
 package br.com.guilhermekellermann.individual_registration.modules.person;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Entity;
@@ -24,4 +27,7 @@ public class PersonEntity {
     private String district;
     private String cityName;
     private String state;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 }

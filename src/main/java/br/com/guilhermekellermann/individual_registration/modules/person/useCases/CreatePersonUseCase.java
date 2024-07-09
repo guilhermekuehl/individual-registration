@@ -3,9 +3,9 @@ package br.com.guilhermekellermann.individual_registration.modules.person.useCas
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.guilhermekellermann.individual_registration.modules.exceptions.PersonFoundException;
 import br.com.guilhermekellermann.individual_registration.modules.person.PersonEntity;
 import br.com.guilhermekellermann.individual_registration.modules.person.PersonRepository;
-import br.com.guilhermekellermann.individual_registration.modules.person.exceptions.PersonFoundException;
 
 @Service
 public class CreatePersonUseCase {
