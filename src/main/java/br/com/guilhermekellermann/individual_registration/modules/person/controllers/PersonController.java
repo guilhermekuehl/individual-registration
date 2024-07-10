@@ -1,5 +1,8 @@
 package br.com.guilhermekellermann.individual_registration.modules.person.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,10 +39,9 @@ public class PersonController {
 
     @GetMapping("/profile")
     public ResponseEntity<Object> get(HttpServletRequest request) {
-        var cpfPerson = request.getAttribute("cpf");
         try {
             var profile = this.profilePersonUseCase
-                .execute(cpfPerson.toString());
+                .execute();
             return ResponseEntity.ok().body(profile);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

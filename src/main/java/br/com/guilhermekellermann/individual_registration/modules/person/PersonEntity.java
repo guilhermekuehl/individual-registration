@@ -1,12 +1,11 @@
 package br.com.guilhermekellermann.individual_registration.modules.person;
 
-import java.time.LocalDateTime;
-
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
@@ -16,10 +15,11 @@ public class PersonEntity {
     private String name;
 
     @Length(min = 8, max = 11, message = "Telefone inválido")
+    @Pattern(regexp = "\\S+", message = "O campo [phoneNumber] não deve conter espaço")
     private String phoneNumber;
 
-    @Length(min = 11, max = 11, message = "CPF inválido")
     @Id
+    @CPF
     private String cpf;
     private String address;
     private String complement;
