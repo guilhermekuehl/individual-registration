@@ -6,18 +6,17 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.com.guilhermekellermann.individual_registration.modules.exceptions.PersonFoundException;
 import br.com.guilhermekellermann.individual_registration.modules.person.PersonEntity;
 import br.com.guilhermekellermann.individual_registration.modules.person.PersonRepository;
 import br.com.guilhermekellermann.individual_registration.modules.person.useCases.CreatePersonUseCase;
-import jakarta.transaction.Transactional;
 
-@Transactional
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class CreatePersonUseCaseTest {
 
     @InjectMocks
