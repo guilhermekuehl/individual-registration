@@ -2,40 +2,43 @@ package br.com.guilhermekellermann.individual_registration.modules.person.useCas
 
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 import br.com.guilhermekellermann.individual_registration.modules.exceptions.PersonFoundException;
 import br.com.guilhermekellermann.individual_registration.modules.person.PersonEntity;
 import br.com.guilhermekellermann.individual_registration.modules.person.PersonRepository;
 import br.com.guilhermekellermann.individual_registration.modules.person.useCases.CreatePersonUseCase;
+import jakarta.transaction.Transactional;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@Transactional
+@Rollback
 public class CreatePersonUseCaseTest {
 
-    @InjectMocks
+    @Autowired
     private CreatePersonUseCase createPersonUseCase;
 
-    @Mock
+    @Autowired
     private PersonRepository personRepository;
 
-    @Test
+    @Test()
     @DisplayName("should not be able to create a person with person found")
     public void should_not_be_able_to_create_a_person_with_person_found() {
         var cpf = "10452148928";
 
-        var person = new PersonEntity();
-        person.setCpf(cpf);
-        personRepository.save(person);
+        var person1 = new PersonEntity();
+        person1.setCpf(cpf);
+        personRepository.save(person1);
+        var samePerson = new PersonEntity();
+        samePerson.setCpf(cpf);
 
         try {
-            createPersonUseCase.execute(person);
+            createPersonUseCase.execute(samePerson);
         } catch (Exception e) {
             assertInstanceOf(PersonFoundException.class, e);
         }
@@ -44,15 +47,13 @@ public class CreatePersonUseCaseTest {
     @Test
     @DisplayName("Should return a person entity when save")
     public void should_return_a_person_entity_when_save() {
-        var cpf = "79178796075";
+        var cpf = "33547940036";
 
         var person = new PersonEntity();
         person.setCpf(cpf);
 
-        when(personRepository.save(person)).thenReturn(person);
-
         var personCreated = createPersonUseCase.execute(person);
-        assertInstanceOf(person.getClass(), personCreated);
+        assertInstanceOf(PersonEntity.class, personCreated);
         assertNotNull(personCreated.getCpf());
     }
 }
